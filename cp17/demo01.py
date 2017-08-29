@@ -13,17 +13,20 @@ POP20_CC = ('CN IN US ID BR PK NG BD RU JP MX PH VN ET EG DE IR TR CD FR').split
 BASE_URL = "http://flupy.org/data/flags"
 DEST_URL = "./"
 
+
 # 保存图片
 def save_flat(img, filename):
     path = os.path.join(DEST_URL, filename)
     with open(path, 'wb') as fp:
         fp.write(img)
 
+
 # 下载图片
 def get_flag(cc):
     url = '{}/{cc}{cc}.gif'.format(BASE_URL, cc=cc.lower())
     resp = requests.get(url)
     return resp.content
+
 
 # 显示文本
 def show(text):
@@ -37,6 +40,7 @@ def download_many(cc_list):
         show(cc)
         save_flat(image, cc.lower() + '.gif')
     return len(cc_list)
+
 
 def main(download_many):
     t0 = time.time()

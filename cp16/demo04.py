@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+
+"""
+yield from 类似于 ES6 中的 await，
+"""
+
 # yield from
 
 # yield from 使用示例
@@ -22,13 +27,15 @@ def averager():
 
     return Result(count, average)
 
+
 def grouper(results, key):
     while True:
         results[key] = yield from averager()
 
+
 def main(data):
     results = {}
-    for key , values in data.iterms():
+    for key, values in data.iterms():
         group = grouper(results, key)
         next(group)
         for value in values:
@@ -36,9 +43,10 @@ def main(data):
         group.send(None)
     print(results)
 
-def report(results):
-    for key, result in sorted(results.items()):
-        group, unit = key.split(',')
+
+# def report(results):
+#     for key, result in sorted(results.items()):
+#         group, unit = key.split(',')
 
 
 # yield from 的简化伪代码
@@ -58,12 +66,3 @@ def report(results):
 #             break
 #
 # RESULT = _r
-
-"""
-yield from 类似于 ES6 中的 await，
-"""
-
-"""
-协程示例程序: 使用协程做离散事件方针
-"""
-

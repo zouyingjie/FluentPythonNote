@@ -1,6 +1,13 @@
-
 # -*- coding: utf-8 -*-
+
 # 终止协程与异常处理: throw 和 close
+
+"""
+协程有两种终止方式: 第一提供一个 哨兵值，当send 该值是终止，然后协程会返回值。或者调用 close 方法，会传递 GeneratorExitException,
+如果没有处理则终止协程，且调用方不会报错
+"""
+
+
 class DemoException(Exception):
     """演示"""
     pass
@@ -16,6 +23,7 @@ def demo_exc_handling():
         else:
             print('-> coroutine received :', x)
     raise RuntimeError("this line should never run")
+
 
 exec_coro = demo_exc_handling()
 next(exec_coro)
@@ -33,6 +41,7 @@ print(getgeneratorstate(exec_coro))
 from collections import namedtuple
 Result = namedtuple("Result", "count average")
 
+
 def averager():
     total = 0.0
     count = 0
@@ -45,6 +54,7 @@ def averager():
         count += 1
         average = total / count
     return Result(count, average)
+
 
 print("==============")
 
@@ -62,8 +72,3 @@ try:
 # 其 value 属性的值变成  yield from 表达式的值
 except StopIteration as e:
     print(e.value)
-
-"""
-协程有两种终止方式: 第一提供一个 哨兵值，当send 该值是终止，然后协程会返回值。或者调用 close 方法，会传递 GeneratorExitException,
-如果没有处理则终止协程，且调用方不会报错
-"""
