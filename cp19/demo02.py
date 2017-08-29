@@ -8,8 +8,10 @@
 """
 
 
-# 使用属性示例
 class PropertyDemo:
+    """
+    使用属性示例
+    """
 
     def __init__(self, data):
         set.data = data
@@ -57,9 +59,10 @@ class LineItem2:
             raise ValueError("value must be > 0")
 
 
-# 给特性加文档注释，和其他的类，方法加注释一致
 class Foo:
-
+    """
+    给特性加文档注释，和其他的类，方法加注释一致
+    """
     @property
     def bar(self):
         '''The bar attribute'''
@@ -70,11 +73,14 @@ class Foo:
         self.__dict__['bar'] = value
 
 
-# 以下为特性工厂函数程序示例
-# 根据名称来创建属性
-# 因为 Python 中，函数是作为一级对象的，因此可以直接把函数作为工厂
-# Java 中的话需要使用一个工厂类
 def quantity(storage_name):
+    """
+    以下为特性工厂函数程序示例
+    根据名称来创建属性
+    因为 Python 中，函数是作为一级对象的，因此可以直接把函数作为工厂, Java 中的话需要使用一个工厂类
+    :param storage_name:
+    :return:
+    """
     def qty__getter(istance):
         return istance.__dict__[storage_name]
 
