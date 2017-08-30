@@ -14,15 +14,15 @@ class PropertyDemo:
     """
 
     def __init__(self, data):
-        set.data = data
+        set._data = data
 
     @property
-    def data(self, data):
-        return self.data
+    def data(self):
+        return self._data
 
     @data.setter
     def data(self, data):
-        self.data = data
+        self._data = data
 
 
 class LineItem:
